@@ -1,0 +1,25 @@
+{
+  "name": "ethplay",
+  "version": "1.0.0",
+  "description": "1.get code from https://github.com/blockscout/evm-smart-contracts/tree/master/contracts 2.resave hash source.sol become path name save need info to hash/contact.json 3.use hypertrie to show list",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polo13999/ethplay.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/polo13999/ethplay/issues"
+  },
+  "homepage": "https://github.com/polo13999/ethplay#readme",
+  "dependencies": {
+    "@types/node": "^12.7.3",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.6.2"
+  }
+}
