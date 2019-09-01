@@ -1,0 +1,55 @@
+Arguments: 
+  /Users/polo13999/.nvm/versions/node/v8.16.0/bin/node /Users/polo13999/.nvm/versions/node/v8.16.0/bin/yarn
+
+PATH: 
+  /Users/polo13999/.cargo/bin:/Users/polo13999/.nvm/versions/node/v8.16.0/bin:/Users/polo13999/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/polo13999/.cargo/bin:/Users/polo13999/.nvm/versions/node/v8.16.0/bin
+
+Yarn version: 
+  1.16.0
+
+Node version: 
+  8.16.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/polo13999/Sites/case/ethplay/package.json: Unexpected token } in JSON at position 686
+      at JSON.parse (<anonymous>)
+      at /Users/polo13999/.nvm/versions/node/v8.16.0/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/Users/polo13999/.nvm/versions/node/v8.16.0/lib/node_modules/yarn/lib/cli.js:304:30)
+      at /Users/polo13999/.nvm/versions/node/v8.16.0/lib/node_modules/yarn/lib/cli.js:315:13
+      at <anonymous>
+
+npm manifest: 
+  {
+    "name": "ethplay",
+    "version": "1.0.0",
+    "description": "1.get code from https://github.com/blockscout/evm-smart-contracts/tree/master/contracts 2.resave hash source.sol become path name save need info to hash/contact.json 3.use hypertrie to show list",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/polo13999/ethplay.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/polo13999/ethplay/issues"
+    },
+    "homepage": "https://github.com/polo13999/ethplay#readme",
+    "dependencies": {
+      "crypto": "^1.0.1",
+      "hypertrie": "^3.7.1",
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
