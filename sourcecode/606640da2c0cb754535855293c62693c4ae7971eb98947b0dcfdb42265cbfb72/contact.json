@@ -1,0 +1,14 @@
+{
+  "address": "0x3039d0a94d51c67a4f35e742b571874e53467804",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "CarbonVote: Yes",
+  "contractName": "Vote",
+  "compilerVersion": "v0.3.5-2016-07-01-48238c9",
+  "optimization": false,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2016-07-06\n*/\n\ncontract Vote {\n    event LogVote(address indexed addr);\n\n    function() {\n        LogVote(msg.sender);\n\n        if (msg.value > 0) {\n            msg.sender.send(msg.value);\n        }\n    }\n}",
+  "bytecode": "606060405260978060106000396000f360606040523615600d57600d565b60955b3373ffffffffffffffffffffffffffffffffffffffff167fd66fd10d93c3fcf37a27c11c0e12214976632505c7954b53c023093d843fc1c460405180905060405180910390a260003411156092573373ffffffffffffffffffffffffffffffffffffffff16600034604051809050600060405180830381858888f19350505050505b5b565b00"
+}

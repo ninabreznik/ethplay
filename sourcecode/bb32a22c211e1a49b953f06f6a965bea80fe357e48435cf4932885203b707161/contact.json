@@ -1,0 +1,15 @@
+{
+  "address": "0xbcfb7ae31df6bc26611cf87ce515de4802a0da15",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "",
+  "contractName": "Unwraper",
+  "compilerVersion": "v0.5.6+commit.b259423e",
+  "optimization": false,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2019-04-08\n*/\n\n// Verified using https://dapp.tools\n\n// hevm: flattened sources of src/Unwraper.sol\npragma solidity >=0.5.0 <0.6.0;\n\n////// src/interfaces/IERC20.sol\n/* pragma solidity >=0.5.0 <0.6.0; */\n\ninterface IERC20 {\n    function transfer(address to, uint256 value) external returns (bool);\n    function approve(address spender, uint256 value) external returns (bool);\n    function transferFrom(address from, address to, uint256 value) external returns (bool);\n    function totalSupply() external view returns (uint256);\n    function balanceOf(address who) external view returns (uint256);\n    function allowance(address owner, address spender) external view returns (uint256);\n}\n////// src/interfaces/IWrappedEther.sol\n/* pragma solidity >=0.5.0 <0.6.0; */\n\n/* import \"./IERC20.sol\"; */\n\ncontract IWrappedEther is IERC20 {\n    function deposit() external payable;\n    function withdraw(uint amount) external;\n}\n////// src/Unwraper.sol\n/* pragma solidity >=0.5.0 <0.6.0; */\n\n/* import \"./interfaces/IWrappedEther.sol\"; */\n\ncontract Unwraper {\n    IWrappedEther constant weth = IWrappedEther(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2);\n\n    function unwrapAll() public {\n        uint256 amount = weth.balanceOf(address(this));\n        weth.withdraw(amount);\n        msg.sender.transfer(amount);\n    }\n}",
+  "abi": "[{\"constant\":false,\"inputs\":[],\"name\":\"unwrapAll\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+  "bytecode": "608060405234801561001057600080fd5b506101ff806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c80634982e3b714610030575b600080fd5b61003861003a565b005b600073c02aaa39b223fe8d0a0e5c4f27ead9083c756cc273ffffffffffffffffffffffffffffffffffffffff166370a08231306040518263ffffffff1660e01b8152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060206040518083038186803b1580156100cd57600080fd5b505afa1580156100e1573d6000803e3d6000fd5b505050506040513d60208110156100f757600080fd5b8101908080519060200190929190505050905073c02aaa39b223fe8d0a0e5c4f27ead9083c756cc273ffffffffffffffffffffffffffffffffffffffff16632e1a7d4d826040518263ffffffff1660e01b815260040180828152602001915050600060405180830381600087803b15801561017157600080fd5b505af1158015610185573d6000803e3d6000fd5b505050503373ffffffffffffffffffffffffffffffffffffffff166108fc829081150290604051600060405180830381858888f193505050501580156101cf573d6000803e3d6000fd5b505056fea165627a7a723058204a6d556672d08057fb606d9802002ef7368ccb5d2b56a9e398077c4d8722e04f0029"
+}

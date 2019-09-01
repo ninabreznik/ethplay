@@ -1,0 +1,15 @@
+{
+  "address": "0x5f606005ba50D689fe03F7f9F6D497a80461bE60",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "",
+  "contractName": "TestContract",
+  "compilerVersion": "v0.5.2+commit.1df8f40c",
+  "optimization": false,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2019-04-13\n*/\n\n// File: contracts/TestContract.sol\n\npragma solidity >=0.4.21 <0.6.0;\n\ncontract TestContract {\n    address public owner;\n\n    constructor() public {\n        owner = msg.sender;\n    }\n}",
+  "abi": "[{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}]",
+  "bytecode": "608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060e38061005f6000396000f3fe6080604052348015600f57600080fd5b50600436106045576000357c0100000000000000000000000000000000000000000000000000000000900480638da5cb5b14604a575b600080fd5b60506092565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea165627a7a7230582058f98056e2bb45bda612bdd8b0ac2a2c3c723f9f68c81218f0b56a9ed1fe7af50029"
+}

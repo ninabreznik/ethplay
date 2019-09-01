@@ -1,0 +1,15 @@
+{
+  "address": "0xbd858b7014ac1ec7e5d420bfcdd4a748f8aeacd5",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "",
+  "contractName": "Verification",
+  "compilerVersion": "v0.4.18+commit.9cf6e910",
+  "optimization": false,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2018-03-06\n*/\n\npragma solidity 0.4.18;\n\ncontract Verification{\n    function() payable public{\n        msg.sender.transfer(msg.value);\n    }\n}",
+  "abi": "[{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"}]",
+  "bytecode": "60606040523415600e57600080fd5b60718061001c6000396000f30060606040523373ffffffffffffffffffffffffffffffffffffffff166108fc349081150290604051600060405180830381858888f193505050501515604357600080fd5b0000a165627a7a7230582010dc2c22801f7fed973ed2b7908c8ff385829b895a4c08c2ecd0afbe7b7c2d640029"
+}

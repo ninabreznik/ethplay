@@ -1,0 +1,15 @@
+{
+  "address": "0x5880d016f92188da63c47ff84f32bf623925823d",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "",
+  "contractName": "VoteEighteenFive",
+  "compilerVersion": "v0.5.6+commit.b259423e",
+  "optimization": true,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2019-06-03\n*/\n\ncontract VoteEighteenFive {}",
+  "abi": "[]",
+  "bytecode": "6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a72305820e642a3162813d5f8582ef0aad0df89b52e1d47719a17bfb4dcbf59a1153b10080029"
+}

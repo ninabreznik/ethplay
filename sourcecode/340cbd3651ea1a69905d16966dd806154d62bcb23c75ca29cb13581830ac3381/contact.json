@@ -1,0 +1,14 @@
+{
+  "address": "0xdafbf7c9f0e742e34ed07b12df67cb2259fc9ef3",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "",
+  "contractName": "SeeYouAtEthcon2020",
+  "compilerVersion": "v0.5.1+commit.c8a2cb62",
+  "optimization": false,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2019-05-27\n*/\n\npragma solidity >=0.4.0 <0.6.0;\n\ncontract SeeYouAtEthcon2020 {\n    address public winner;\n    uint256 public timeLock;\n    \n    constructor() public {\n        timeLock = uint256(0) - 1;\n    }\n    \n    function () payable external {\n        require(msg.value >= 0.01 ether);\n        timeLock = now + 1 hours;\n        winner = msg.sender;\n    }\n    \n    function claim() public {\n        require(msg.sender == winner);\n        require(now >= timeLock);\n        msg.sender.transfer(address(this).balance);\n    }\n}",
+  "bytecode": "608060405234801561001057600080fd5b5060016000036001819055506102708061002b6000396000f3fe608060405260043610610051576000357c0100000000000000000000000000000000000000000000000000000000900480634e71d92d146100b4578063d085835a146100cb578063dfbf53ae146100f6575b662386f26fc10000341015151561006757600080fd5b610e104201600181905550336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550005b3480156100c057600080fd5b506100c961014d565b005b3480156100d757600080fd5b506100e0610219565b6040518082815260200191505060405180910390f35b34801561010257600080fd5b5061010b61021f565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101a857600080fd5b60015442101515156101b957600080fd5b3373ffffffffffffffffffffffffffffffffffffffff166108fc3073ffffffffffffffffffffffffffffffffffffffff16319081150290604051600060405180830381858888f19350505050158015610216573d6000803e3d6000fd5b50565b60015481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea165627a7a72305820d19c35bf575967f61adf34319faff7bf8595d4067dbf16f6d9fcedf5dd848caa0029"
+}

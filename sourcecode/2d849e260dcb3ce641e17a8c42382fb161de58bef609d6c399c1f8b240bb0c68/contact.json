@@ -1,0 +1,15 @@
+{
+  "address": "0x450eb08f60e15714439dba3fc84ba787b7d41894",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "",
+  "contractName": "VoteIncreaseThree",
+  "compilerVersion": "v0.5.0+commit.1d4f565a",
+  "optimization": true,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2019-04-15\n*/\n\npragma solidity ^0.5.0;\n\ncontract VoteIncreaseThree {\n\n}",
+  "abi": "[]",
+  "bytecode": "6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a723058205d1e122a10ec2c79222c6f6daadba2aa582e1ff95405e854e5fee941c1416eb60029"
+}

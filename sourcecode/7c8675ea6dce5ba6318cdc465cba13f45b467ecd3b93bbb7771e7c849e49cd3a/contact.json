@@ -1,0 +1,14 @@
+{
+  "address": "0xedc016ace4618284f289696545760ac0db5bc79b",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "",
+  "contractName": "VoteSeventeenFive",
+  "compilerVersion": "v0.5.0+commit.1d4f565a",
+  "optimization": false,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2019-05-20\n*/\n\npragma solidity ^0.5.0;\n\ncontract VoteSeventeenFive {\n}",
+  "bytecode": "6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a72305820d80b1b372a5309bea11392ce9d29b5dd3d361146c57cc3069db0687968b48bf60029"
+}

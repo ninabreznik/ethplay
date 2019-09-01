@@ -1,0 +1,15 @@
+{
+  "address": "0x36e75e2c9e6a123a36c4ac88765a5dd1d6d0c350",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "",
+  "contractName": "MulticallHelper",
+  "compilerVersion": "v0.4.25+commit.59dbf8f1",
+  "optimization": true,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2019-04-05\n*/\n\npragma solidity ^0.4.25;\n\n/// @title Multicall Helper Functions\n/// @notice These helper functions are provided in a separate contract because the main multicall contract can't call into itself\n/// @author Michael Elliot - <[email protected]>\n/// @author Joshua Levine - <[email protected]>\n\ncontract MulticallHelper {\n    function getEthBalance(address addr) public view returns (uint256 balance) {\n        return addr.balance;\n    }\n    function getBlockHash(uint256 blockNumber) public view returns (bytes32 blockHash) {\n        return blockhash(blockNumber);\n    }\n    function getLastBlockHash() public view returns (bytes32 blockHash, uint256 blockNumber) {\n        return (blockhash(block.number - 1), block.number - 1);\n    }\n}",
+  "abi": "[{\"constant\":true,\"inputs\":[],\"name\":\"getLastBlockHash\",\"outputs\":[{\"name\":\"blockHash\",\"type\":\"bytes32\"},{\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"getEthBalance\",\"outputs\":[{\"name\":\"balance\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"name\":\"getBlockHash\",\"outputs\":[{\"name\":\"blockHash\",\"type\":\"bytes32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]",
+  "bytecode": "608060405234801561001057600080fd5b50610128806100206000396000f30060806040526004361060525763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166327e86d6e811460575780634d2301cc146082578063ee82ac5e1460bf575b600080fd5b348015606257600080fd5b50606960d4565b6040805192835260208301919091528051918290030190f35b348015608d57600080fd5b5060ad73ffffffffffffffffffffffffffffffffffffffff6004351660de565b60408051918252519081900360200190f35b34801560ca57600080fd5b5060ad60043560f8565b6000194301804091565b73ffffffffffffffffffffffffffffffffffffffff163190565b40905600a165627a7a72305820619a35656881a554ad4f309d55773507ddd87a7135d3d2cf51a2670fc9cc0e4d0029"
+}

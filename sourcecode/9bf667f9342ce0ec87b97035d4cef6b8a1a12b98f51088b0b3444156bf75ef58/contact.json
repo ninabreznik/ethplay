@@ -1,0 +1,14 @@
+{
+  "address": "0xb846eeae762b6b86fe6e38ae989a9a8f5949b97a",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "",
+  "contractName": "Blocklancer_Payment",
+  "compilerVersion": "v0.4.24+commit.e67f0147",
+  "optimization": true,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2018-07-18\n*/\n\npragma solidity ^0.4.0;\n\ncontract Blocklancer_Payment{\n    function () public payable {\n        address(0x0581cee36a85Ed9e76109A9EfE3193de1628Ac2A).call.value(msg.value)();\n    }  \n}",
+  "bytecode": "6080604052348015600f57600080fd5b50605a80601d6000396000f3006080604052604051730581cee36a85ed9e76109a9efe3193de1628ac2a903490600081818185875af1505050500000a165627a7a723058203aa26e8726f1a6b7d56f8e804ba53d2ccfac9e618ae38dfc9615fa192dd4d3930029"
+}

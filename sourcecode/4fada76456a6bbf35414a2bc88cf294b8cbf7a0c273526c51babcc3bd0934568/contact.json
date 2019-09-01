@@ -1,0 +1,14 @@
+{
+  "address": "0x02f153ce67fd81c42687079f72893a496ddbcdf3",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "",
+  "contractName": "BVABurner",
+  "compilerVersion": "v0.5.0+commit.1d4f565a",
+  "optimization": false,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2019-05-09\n*/\n\npragma solidity ^0.5.0;\n\n// ------------------------------------------------------------------------\n// This is BVA token burner contract. Ether or Tokens transferred to this\n// contract is no longer retrievable\n//\n// ------------------------------------------------------------------------\ncontract BVABurner {\n\n}",
+  "bytecode": "6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a723058200ccb23223fd97d063d747adcebd7f858a2e30dcd409d9094a1c303cf6bcc04200029"
+}

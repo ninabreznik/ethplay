@@ -1,0 +1,15 @@
+{
+  "address": "0xf3182ea157f7fcc3689406bdcc55bd37d962766c",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "",
+  "contractName": "PaymentReceiver",
+  "compilerVersion": "v0.4.24+commit.e67f0147",
+  "optimization": false,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2018-06-19\n*/\n\npragma solidity ^0.4.19;\n\n/**\n * @title ERC20Basic\n * @dev Simpler version of ERC20 interface\n * @dev see https://github.com/ethereum/EIPs/issues/179\n */\ncontract ERC20Basic {\n  uint256 public totalSupply;\n  function balanceOf(address who) public constant returns (uint256);\n  function transfer(address to, uint256 value) public returns (bool);\n  event Transfer(address indexed from, address indexed to, uint256 value);\n}\n\n/**\n * @title ERC20 interface\n * @dev see https://github.com/ethereum/EIPs/issues/20\n */\ncontract ERC20 is ERC20Basic {\n  function allowance(address owner, address spender) public constant returns (uint256);\n  function transferFrom(address from, address to, uint256 value) public returns (bool);\n  function approve(address spender, uint256 value) public returns (bool);\n  event Approval(address indexed owner, address indexed spender, uint256 value);\n}\n\ncontract PaymentReceiver\n{\n address private constant taxman = 0xB13D7Dab5505512924CB8E1bE970B849009d34Da;\n address private constant store = 0x23859DBF88D714125C65d1B41a8808cADB199D9E;\n address private constant pkt = 0x2604fa406be957e542beb89e6754fcde6815e83f;\n\n  modifier onlyTaxman { require(msg.sender == taxman); _; }\n\n  function withdrawTokens(uint256 value) external onlyTaxman\n  {\n    ERC20 token = ERC20(pkt);\n    token.transfer(store, value);\n  }\n}",
+  "abi": "[{\"constant\":false,\"inputs\":[{\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"withdrawTokens\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+  "bytecode": "608060405234801561001057600080fd5b506101fd806100206000396000f300608060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063315a095d14610046575b600080fd5b34801561005257600080fd5b5061007160048036038101908080359060200190929190505050610073565b005b600073b13d7dab5505512924cb8e1be970b849009d34da73ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156100c357600080fd5b732604fa406be957e542beb89e6754fcde6815e83f90508073ffffffffffffffffffffffffffffffffffffffff1663a9059cbb7323859dbf88d714125c65d1b41a8808cadb199d9e846040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b15801561019157600080fd5b505af11580156101a5573d6000803e3d6000fd5b505050506040513d60208110156101bb57600080fd5b81019080805190602001909291905050505050505600a165627a7a7230582037e513c24d750a5c72fa6100074e3380fbddc8579af35a8deaf0485a136dba4a0029"
+}

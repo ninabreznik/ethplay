@@ -1,0 +1,16 @@
+{
+  "address": "0xea4929d5625981f80c0b1d13b23443695dd1ae1d",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "",
+  "contractName": "Proxy",
+  "compilerVersion": "v0.4.24+commit.e67f0147",
+  "optimization": true,
+  "runs": "999",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2019-04-23\n*/\n\npragma solidity ^0.4.24;\n\n/**\n * @title Proxy\n * @dev Basic proxy that delegates all calls to a fixed implementing contract.\n * The implementing contract cannot be upgraded.\n * @author Julien Niset - <[email protected]>\n */\ncontract Proxy {\n\n    address implementation;\n\n    event Received(uint indexed value, address indexed sender, bytes data);\n\n    constructor(address _implementation) public {\n        implementation = _implementation;\n    }\n\n    function() external payable {\n\n        if(msg.data.length == 0 && msg.value > 0) { \n            emit Received(msg.value, msg.sender, msg.data); \n        }\n        else {\n            // solium-disable-next-line security/no-inline-assembly\n            assembly {\n                let target := sload(0)\n                calldatacopy(0, 0, calldatasize())\n                let result := delegatecall(gas, target, 0, calldatasize(), 0, 0)\n                returndatacopy(0, 0, returndatasize())\n                switch result \n                case 0 {revert(0, returndatasize())} \n                default {return (0, returndatasize())}\n            }\n        }\n    }\n}",
+  "abi": "[{\"inputs\":[{\"name\":\"_implementation\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"value\",\"type\":\"uint256\"},{\"indexed\":true,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"Received\",\"type\":\"event\"}]",
+  "bytecode": "608060405234801561001057600080fd5b50604051602080610127833981016040525160008054600160a060020a03909216600160a060020a031990921691909117905560d6806100516000396000f30060806040523615801560115750600034115b156082573373ffffffffffffffffffffffffffffffffffffffff16347f606834f57405380c4fb88d1f4850326ad3885f014bab3b568dfbf7a041eef7386000366040518080602001828103825284848281815260200192508082843760405192018290039550909350505050a360a8565b6000543660008037600080366000845af43d6000803e80801560a3573d6000f35b3d6000fd5b0000a165627a7a7230582009ad600070879c5d9739059132e69cc1b5b90d2b945f553b3f45ceea43d65c8f0029000000000000000000000000b1dd690cc9af7bb1a906a9b5a94f94191cc553ce",
+  "constructorArguments": "000000000000000000000000b1dd690cc9af7bb1a906a9b5a94f94191cc553ce"
+}

@@ -1,4 +1,3 @@
-/node_module/
-/sourcecode/
-node_modules
+ /sourcecode/
+/node_modules/
 /trie.db/

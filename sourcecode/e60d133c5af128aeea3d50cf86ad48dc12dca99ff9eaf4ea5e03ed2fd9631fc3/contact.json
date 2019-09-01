@@ -1,0 +1,15 @@
+{
+  "address": "0x2f77a3c58d5fb04d1b9054499806b6fa8f763f84",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "",
+  "contractName": "ContentosLock",
+  "compilerVersion": "v0.4.24+commit.e67f0147",
+  "optimization": false,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2019-06-04\n*/\n\npragma solidity >=0.4.0 <0.7.0;\n\n\n// This is the Contentos eco-reward contract, the total is 3500000000, no one can use this part of the token\n\ncontract ContentosLock {\n\n}",
+  "abi": "[]",
+  "bytecode": "6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a7230582075fc594d65fdf34d3aa3f77894ec3b62bcc824a65dfd21d5d8d888be9025f7ca0029"
+}

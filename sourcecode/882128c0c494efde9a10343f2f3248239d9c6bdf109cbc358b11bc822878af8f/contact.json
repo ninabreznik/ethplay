@@ -1,0 +1,15 @@
+{
+  "address": "0xe94b04a0fed112f3664e45adb2b8915693dd5ff3",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "Bittrex 2",
+  "contractName": "ReplaySafeSplit",
+  "compilerVersion": "v0.3.5-2016-07-21-6610add",
+  "optimization": true,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2016-07-25\n*/\n\ncontract AmIOnTheFork {\n    function forked() constant returns(bool);\n}\n\ncontract ReplaySafeSplit {\n    // Fork oracle to use\n    AmIOnTheFork amIOnTheFork = AmIOnTheFork(0x2bd2326c993dfaef84f696526064ff22eba5b362);\n\n    event e(address a);\n\t\n    // Splits the funds into 2 addresses\n    function split(address targetFork, address targetNoFork) returns(bool) {\n        if (amIOnTheFork.forked() && targetFork.send(msg.value)) {\n\t\t\te(targetFork);\n            return true;\n        } else if (!amIOnTheFork.forked() && targetNoFork.send(msg.value)) {\n\t\t\te(targetNoFork);\t\t\n            return true;\n        }\n        throw; // don't accept value transfer, otherwise it would be trapped.\n    }\n\n    // Reject value transfers.\n    function() {\n        throw;\n    }\n}",
+  "abi": "[{\"constant\":false,\"inputs\":[{\"name\":\"targetFork\",\"type\":\"address\"},{\"name\":\"targetNoFork\",\"type\":\"address\"}],\"name\":\"split\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"a\",\"type\":\"address\"}],\"name\":\"e\",\"type\":\"event\"}]",
+  "bytecode": "606060405260008054600160a060020a031916732bd2326c993dfaef84f696526064ff22eba5b3621781556101d590819061003990396000f36060604052361561001f5760e060020a60003504630f2c93298114610028575b6100005b610002565b6100fd600435602435600080547f16c72721000000000000000000000000000000000000000000000000000000006060908152600160a060020a03909116906316c727219060649060209060048187876161da5a03f11561000257505060405151905080156100b25750604051600160a060020a038416908290349082818181858883f193505050505b1561010f5760408051600160a060020a038516815290517f23919512b2162ddc59b67a65e3b03c419d4105366f7d4a632f5d3c3bee9b1cff9181900360200190a15060015b92915050565b60408051918252519081900360200190f35b600060009054906101000a9004600160a060020a0316600160a060020a03166316c727216040518160e060020a0281526004018090506020604051808303816000876161da5a03f11561000257505060405151159050801561018c5750604051600160a060020a038316908290349082818181858883f193505050505b156100235760408051600160a060020a038416815290517f23919512b2162ddc59b67a65e3b03c419d4105366f7d4a632f5d3c3bee9b1cff9181900360200190a15060016100f756"
+}

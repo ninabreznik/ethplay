@@ -1,0 +1,14 @@
+{
+  "address": "0x1b4abf9536b56d6d549b787b4f328f6593e201b1",
+  "chain": "ETH",
+  "chainID": 1,
+  "verifier": "etherscan.io",
+  "commonName": "",
+  "contractName": "PolkaCurve",
+  "compilerVersion": "v0.5.4+commit.9549d8ff",
+  "optimization": false,
+  "runs": "200",
+  "evmVersion": "default",
+  "sourceCode": "/**\n *Submitted for verification at Etherscan.io on 2019-05-23\n*/\n\npragma solidity ^0.5.4;\n\ninterface CurveInterface {\n\n    function calc(uint) external pure returns (uint);\n\n}\n\n/**\n * @title A Curve contract which implement the function of square root.\n * the result is normalized for the total reputation allocated. \n*/\n\ncontract PolkaCurve is CurveInterface {\n\n    uint256 public constant TOTAL_REPUTATION = 800000;\n    uint256 public constant SUM_OF_SQRTS = 1718050;\n\n    function calc(uint256 _value) external pure returns (uint256 sqrt) {\n        uint value = _value * 1 ether;\n        uint z = (value + 1) / 2;\n        sqrt = value;\n        while (z < sqrt) {\n            sqrt = z;\n            z = (value / z + z) / 2;\n        }\n        sqrt = ((sqrt*TOTAL_REPUTATION)/SUM_OF_SQRTS) * 1000000000;\n    }\n}",
+  "bytecode": "608060405234801561001057600080fd5b50610192806100206000396000f3fe608060405234801561001057600080fd5b506004361061005e576000357c01000000000000000000000000000000000000000000000000000000009004806338c9027a146100635780633f4f781c146100a557806344cac103146100c3575b600080fd5b61008f6004803603602081101561007957600080fd5b81019080803590602001909291905050506100e1565b6040518082815260200191505060405180910390f35b6100ad610158565b6040518082815260200191505060405180910390f35b6100cb61015f565b6040518082815260200191505060405180910390f35b600080670de0b6b3a764000083029050600060026001830181151561010257fe5b0490508192505b8281101561013557809250600281828481151561012257fe5b040181151561012d57fe5b049050610109565b633b9aca00621a3722620c3500850281151561014d57fe5b040292505050919050565b621a372281565b620c35008156fea165627a7a723058201c5d39c653717428f7442a5e3878597ec13baaa540c24d26d6de14f9023001df0029"
+}
