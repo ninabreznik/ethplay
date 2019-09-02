@@ -24,10 +24,14 @@ const cutWork = async (workList) => {
 
                 //const contactName = path.basename(filedir)
                 const contactName = fileObj.address
+                await mkdirFn(`${filedir}/${contactName}`)
+
                 delete fileObj.sourceCode
                 fileObj['test'] = 'test1'
                 fileObj['test2'] = 'test2'
-                await fs.writeFileSync(`${filedir}/${contactName}.json`, JSON.stringify(fileObj), { encoding: 'utf8' })
+
+
+                await fs.writeFileSync(`${filedir}/${contactName}/contract.json`, JSON.stringify(fileObj), { encoding: 'utf8' })
 
 
                 //await fs.copyFileSync(filePath, `${filedir}/contact.json`)
