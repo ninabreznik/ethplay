@@ -20,8 +20,17 @@ const cutWork = async (workList) => {
                 //createContact
 
                 await fs.writeFileSync(`${filedir}/source.sol`, fileObj.sourceCode, { encoding: 'utf8' })
-                //     await fs.writeFileSync(`${filedir}/contact.json`, JSON.stringify(file), { encoding: 'utf8' })
-                await fs.copyFileSync(filePath, `${filedir}/contact.json`)
+
+
+                //const contactName = path.basename(filedir)
+                const contactName = fileObj.address
+                delete fileObj.sourceCode
+                fileObj['test'] = 'test1'
+                fileObj['test2'] = 'test2'
+                await fs.writeFileSync(`${filedir}/${contactName}.json`, JSON.stringify(fileObj), { encoding: 'utf8' })
+
+
+                //await fs.copyFileSync(filePath, `${filedir}/contact.json`)
 
                 db.put(`${filedir}`, fileObj.sourceCode, function () {
                     db.get('hello', console.log)
