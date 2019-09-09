@@ -320,6 +320,15 @@ random-access-file@^2.1.0:
     mkdirp "^0.5.1"
     random-access-storage "^1.1.1"
 
+random-access-memory@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/random-access-memory/-/random-access-memory-3.1.1.tgz#cb8516663a8a294b719c8363a6517c1dcb3e8392"
+  integrity sha512-Qy1MliJDozZ1A6Hx3UbEnm8PPCfkiG/8CArbnhrxXMx1YRJPWipgPTB9qyhn4Z7WlLvCEqPb6Bd98OayyVuwrA==
+  dependencies:
+    inherits "^2.0.3"
+    is-options "^1.0.1"
+    random-access-storage "^1.1.1"
+
 random-access-storage@^1.1.1:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/random-access-storage/-/random-access-storage-1.4.0.tgz#cbe5b5ccfb38680aac7b78a050d9f0a5ef36841f"
