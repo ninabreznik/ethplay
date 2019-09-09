@@ -4,6 +4,13 @@ const path = require("path");
 const hypertrie = require("hypertrie");
 const blake = require('blakejs')
 const db = hypertrie('./trie.db', { valueEncoding: 'json' })
+const Promise = require('bluebird')
+const cmd = require('node-cmd')
+// const tree = require('tree-node-cli');
+const getAsync = Promise.promisify(cmd.get, { multiArgs: true, context: cmd })
+
+
+
 
 const cutWork = async (workList) => {
     const workSize = 100
@@ -60,6 +67,8 @@ const cutWork = async (workList) => {
     const saveKeyToJsonStr = JSON.stringify(saveKeyToJson)
     //console.log('saveKeyToJsonStr', saveKeyToJsonStr)
     await fs.writeFileSync(`${keyPath}/allKey.json`, saveKeyToJsonStr, { encoding: 'utf8' })
+    const result = await getAsync(`tar -zcvf ${keyPath}/allKey.tar ${keyPath}/allKey.json `)
+    console.log('result', result)
 
 }
 
