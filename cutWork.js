@@ -18,7 +18,6 @@ const cutWork = async (workList) => {
 
     const folderHash = await generateToken('undersourcecode')
 
-    await db.put(folderHash, ["source.sol", "contract/"])
     const saveKeyToJson = []
     const mkPath = path.resolve(`sourcecode/${folderHash}`)
 
@@ -39,18 +38,20 @@ const cutWork = async (workList) => {
                     const address = fileObj.address
                     await mkdirFn(`${filedir}/${address}`)
                     await fs.writeFileSync(`${filedir}/${address}/contract.json`, JSON.stringify(fileObj), { encoding: 'utf8' })
-                    saveKeyToJson.push({ key: address })
+                    saveKeyToJson.push({
+                        key: address,
+                        value: {
+                            sourceAbsoultePath: `${filedir}/source.sol`,
+                            contractAbsoultePath: `${filedir}/${address}/contract.json`,
+                            sourcePath: `${folderHash}/${address}/source.sol`,
+                            contractPath: `${folderHash}/${address}/contract.json`
+                        }
+                    })
 
                     //hypertrie here                                         
-                    db.put(address, {
-                        address,
-                        sourceCodeHash
-                    }, function (err, data) {
-                        //console.log(data)
-                        db.get(address, function (err, node) {
-                            console.log('node', node)
-                        })
-                    })
+                    // db.put(address, { address, sourceCodeHash }, function (err, data) {
+                    //     db.get(address, function (err, node) { console.log('node', node) })
+                    // })
                     if (sourceCodeHash != null) { saveKeyToJson.push({ key: address, }) }
                 } catch (err) {
                     console.log('save source.sol have question', err)
@@ -62,9 +63,14 @@ const cutWork = async (workList) => {
 
     const keyPath = path.resolve(`keypath`);
     const saveKeyToJsonStr = JSON.stringify(saveKeyToJson)
-    //console.log('saveKeyToJsonStr', saveKeyToJsonStr)
-    await fs.writeFileSync(`${keyPath}/allKey.json`, saveKeyToJsonStr, { encoding: 'utf8' })
-    const result = await getAsync(`tar -zcvf ${keyPath}/allKey.tar ${keyPath}/allKey.json `)
+
+    // await fs.writeFileSync(`${keyPath}/allKey.json`, saveKeyToJsonStr, { encoding: 'utf8' })
+    // const result = await getAsync(`tar -zcvf ${keyPath}/allKey.tar ${keyPath}/allKey.json `)
+    //change to save to  key
+
+    db.put(folderHash, saveKeyToJsonStr)
+    // await db.put(folderHash, ["source.sol", "contract/"])
+
     //  console.log('result', result)
 
 }
