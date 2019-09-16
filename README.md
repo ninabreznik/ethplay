@@ -27,15 +27,9 @@ save need info to hash/contact.json
 
 7.dat-store run service  --expose-to-internet  && dat-store dat://address
 
-8.
-
+8.server shell script  auto update emv contract 
 
 ```
-
-
-
-
-server shell script  auto update emv contract 
 
 #!/bin/bash
 rm -rf /home/ethplay/evm-smart-contracts/
@@ -50,8 +44,8 @@ cd /home/ethplay/ && npm install && npm run api
 
 ```
 
-ci-cd script 
-
+9.ci-cd script 
+```
 #!/bin/bash
 rm -rf /home/sourcecode
 mv -rf /home/ethplay/sourcecode /home/sourcecode
@@ -67,3 +61,4 @@ cd /home/ethplay/ && npm install && npm run api
 ```
 
 
+10. try to run  Hyperdrive as service 
