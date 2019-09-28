@@ -1,16 +1,16 @@
 const fs = require("fs");
 const crypto = require('crypto');
 const path = require("path");
-const hypertrie = require("hypertrie");
+const hypertrie = require("hypertrie")
+const SDK = require('dat-sdk')
+const { Hypercore } = SDK()
+const Discovery = require('hyperdiscovery')
 const blake = require('blakejs')
 const db = hypertrie('./trie.db', { valueEncoding: 'json' })
 const Promise = require('bluebird')
 const cmd = require('node-cmd')
 // const tree = require('tree-node-cli');
 const getAsync = Promise.promisify(cmd.get, { multiArgs: true, context: cmd })
-
-
-
 
 
 const cutWork = async (workList) => {
@@ -48,7 +48,7 @@ const cutWork = async (workList) => {
                         }
                     })
 
-                    //hypertrie here                                         
+                    //hypertrie here
                     // db.put(address, { address, sourceCodeHash }, function (err, data) {
                     //     db.get(address, function (err, node) { console.log('node', node) })
                     // })
@@ -67,11 +67,31 @@ const cutWork = async (workList) => {
     // await fs.writeFileSync(`${keyPath}/allKey.json`, saveKeyToJsonStr, { encoding: 'utf8' })
     // const result = await getAsync(`tar -zcvf ${keyPath}/allKey.tar ${keyPath}/allKey.json `)
     //change to save to  key
+    db.ready(() => {
+      const discovery = Discovery(db)
+      const url = `dat://${db.key.toString('hex')}`
+      // When you find a new peer, tell them about your core
+      discovery.add(db)
+      // localStorage.setItem('trie_url', url)
+      console.log('Dat address', url)
+      db.put(folderHash, saveKeyToJsonStr, (err) => {
+        if (err) console.log('Error writing', err.message)
+      //  else console.log('wrote', folderHash, '-', saveKeyToJsonStr)
 
-    db.put(folderHash, saveKeyToJsonStr)
-    // await db.put(folderHash, ["source.sol", "contract/"])
+        db.get('16238cc7c846ef7e27a3d084ef7c679a36f5b820c3d9b079e24a2d75e7787a64', (err, res) => {
+          console.log('Query', res)
+        })
+        // db.list('', (err, results) => {
+        // 	if(err) return log('Error reading from trie', err.message)
+        // 	for(let {key, value} of results) {
+      	// 	console.log('LIST:', key, 'value:', Buffer.from(value).toString('utf8'))
+        // 	}
+        // })
+      })
+      // await db.put(folderHash, ["source.sol", "contract/"])
+      //  console.log('result', result)
+    })
 
-    //  console.log('result', result)
 
 }
 
@@ -95,7 +115,7 @@ async function generateToken(sourceCodeString, opts) {
     //hash way2
     let token = ''
     //   if (opts === 'blake2') { token = blake.blake2b(sourceCodeString) }
-    //if (opts === '') { 
+    //if (opts === '') {
     token = blake.blake2sHex(sourceCodeString)
     //}
 
