@@ -15,5 +15,5 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 3282/tcp 8887/tcp 8080/tcp
+EXPOSE 3282/tcp 3282/udp
 CMD [ "npm", "start", "discovery"]
