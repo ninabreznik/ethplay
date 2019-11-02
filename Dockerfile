@@ -16,4 +16,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 3282/tcp 3282/udp
-CMD [ "npm", "start", "discovery"]
+CMD [ "npm", "start"]

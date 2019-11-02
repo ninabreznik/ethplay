@@ -4,23 +4,37 @@ const path = require("path");
 const hypertrie = require("hypertrie")
 const SDK = require('dat-sdk')
 const { Hypercore } = SDK()
-const Discovery = require('hyperdiscovery')
+//const Discovery = require('hyperdiscovery')
 const blake = require('blakejs')
 const db = hypertrie('./trie.db', { valueEncoding: 'json' })
 
-var discovery = Discovery(db)
-discovery.on('connection', function (peer, type) {
-  console.log('got', peer, type)
-  console.log('connected to', discovery.connections, 'peers')
-  peer.on('close', function () {
-    console.log('peer disconnected')
-  })
+const { inspect } = require('util')
+const hyperswarm = require('hyperswarm')
+const swarm = hyperswarm({
+ announceLocalAddress: true
 })
+
+
 const cutWork = async (workList) => {
   db.ready(() => {
-    const discovery = Discovery(db)
+    //const discovery = Discovery(db)
+    const key = crypto.createHash('sha256')
+    .update('verified-contracts')
+    .digest()
+
+    console.log(key.toString('hex'))
+
+    swarm.connectivity((err, capabilities) => {
+      console.log('network capabilities', capabilities, err || '')
+    })
+
+    swarm.join(key, {
+      announce: true,
+      lookup: true
+    })
+
     const url = `dat://${db.key.toString('hex')}`
-    discovery.add(db)
+    //discovery.add(db)
     setTimeout(() => console.log('Dat address', url), 10000)
     cutAndSave()
   })
@@ -40,11 +54,11 @@ const cutWork = async (workList) => {
     const contract = `contract/${fileObj.address}.json`
     db.put(hash, fileObj.sourceCode, (err) => {
       if (err) console.log('Error writing', err.message)
-      else console.log('wrote', hash, ':', fileObj.contractName)
+      //else console.log('wrote', hash, ':', fileObj.contractName)
     })
     db.put(contract, fileObj, (err) => {
       if (err) console.log('Error writing', err.message)
-      else console.log('wrote', contract, ':', `JSON for ${fileObj.contractName}`)
+      //else console.log('wrote', contract, ':', `JSON for ${fileObj.contractName}`)
     })
   }
 }
