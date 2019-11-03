@@ -7,7 +7,7 @@ const { Hypercore } = SDK()
 //const Discovery = require('hyperdiscovery')
 const blake = require('blakejs')
 const db = hypertrie('./trie.db', { valueEncoding: 'json' })
-
+const replicate = require('@hyperswarm/replicator')
 const { inspect } = require('util')
 const hyperswarm = require('hyperswarm')
 const swarm = hyperswarm({
@@ -17,26 +17,14 @@ const swarm = hyperswarm({
 
 const cutWork = async (workList) => {
   db.ready(() => {
-    //const discovery = Discovery(db)
-    const key = crypto.createHash('sha256')
-    .update('verified-contracts')
-    .digest()
-
-    console.log(key.toString('hex'))
-
-    swarm.connectivity((err, capabilities) => {
-      console.log('network capabilities', capabilities, err || '')
-    })
-
-    swarm.join(key, {
-      announce: true,
-      lookup: true
-    })
-
     const url = `dat://${db.key.toString('hex')}`
     //discovery.add(db)
     setTimeout(() => console.log('Dat address', url), 10000)
     cutAndSave()
+    const swarm = replicate(db, {
+      live: true // passed to .replicate
+    })
+
   })
   async function cutAndSave () {
     let sourceCodeHash
@@ -54,11 +42,11 @@ const cutWork = async (workList) => {
     const contract = `contract/${fileObj.address}.json`
     db.put(hash, fileObj.sourceCode, (err) => {
       if (err) console.log('Error writing', err.message)
-      //else console.log('wrote', hash, ':', fileObj.contractName)
+      else console.log('wrote', hash, ':', fileObj.contractName)
     })
     db.put(contract, fileObj, (err) => {
       if (err) console.log('Error writing', err.message)
-      //else console.log('wrote', contract, ':', `JSON for ${fileObj.contractName}`)
+      else console.log('wrote', contract, ':', `JSON for ${fileObj.contractName}`)
     })
   }
 }
