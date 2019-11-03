@@ -22,7 +22,9 @@ const cutWork = async (workList) => {
     setTimeout(() => console.log('Dat address', url), 10000)
     cutAndSave()
     const swarm = replicate(db, {
-      live: true // passed to .replicate
+      live: true, // passed to .replicate
+      announce: true, // should the swarm announce you?
+      lookup: true // should the swarm do lookups for you?
     })
 
   })
