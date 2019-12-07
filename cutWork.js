@@ -1,19 +1,11 @@
 const fs = require("fs");
-const crypto = require('crypto');
-const path = require("path");
 const hypertrie = require("hypertrie")
-const SDK = require('dat-sdk')
-const { Hypercore } = SDK()
-//const Discovery = require('hyperdiscovery')
 const blake = require('blakejs')
 const db = hypertrie('./trie.db', { valueEncoding: 'json' })
 const replicate = require('@hyperswarm/replicator')
-const { inspect } = require('util')
 const hyperswarm = require('hyperswarm')
-const swarm = hyperswarm({
- announceLocalAddress: true
-})
 
+const swarm = hyperswarm()
 
 const cutWork = async (workList) => {
   db.ready(() => {
@@ -21,12 +13,15 @@ const cutWork = async (workList) => {
     //discovery.add(db)
     setTimeout(() => console.log('Dat address', url), 10000)
     cutAndSave()
-    const swarm = replicate(db, {
-      live: true, // passed to .replicate
-      announce: true, // should the swarm announce you?
-      lookup: true // should the swarm do lookups for you?
+    swarm.join(db.key, {
+      live: true,
+      lookup: true, // find & connect to peers
+      announce: true // optional- announce self as a connection target
     })
-
+    swarm.on('connection', (connection, info) => {
+      console.log('new connection!')
+      connection.pipe(db.feed.replicate(info.client)).pipe(connection)
+    })
   })
   async function cutAndSave () {
     let sourceCodeHash
