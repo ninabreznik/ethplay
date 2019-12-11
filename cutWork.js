@@ -6,6 +6,7 @@ const replicate = require('@hyperswarm/replicator')
 const hyperswarm = require('hyperswarm')
 
 const swarm = hyperswarm()
+var count = 0
 
 const cutWork = async (workList) => {
   db.ready(() => {
@@ -35,15 +36,16 @@ const cutWork = async (workList) => {
     }
   }
   function saveToTrie (sourceCodeHash, fileObj) {
-    const hash = `sourcecode/${sourceCodeHash}.sol`
-    const contract = `contract/${fileObj.address}.json`
-    db.put(hash, fileObj.sourceCode, (err) => {
+    //const hash = `sourcecode/${sourceCodeHash}.sol`
+      count++
+      const i = count.toString().padStart(10, '0')
+      // db.put(hash, fileObj.sourceCode, (err) => {
+      //   if (err) console.log('Error writing', err.message)
+      //   else console.log('wrote', hash, ':', fileObj.contractName)
+      // })
+    db.put(i, fileObj, (err) => {
       if (err) console.log('Error writing', err.message)
-      else console.log('wrote', hash, ':', fileObj.contractName)
-    })
-    db.put(contract, fileObj, (err) => {
-      if (err) console.log('Error writing', err.message)
-      else console.log('wrote', contract, ':', `JSON for ${fileObj.contractName}`)
+      else console.log('wrote', i, ':', `JSON for ${fileObj.contractName}`)
     })
   }
 }
